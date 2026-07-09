@@ -68,6 +68,12 @@ export default function StudioApp() {
               </button>
             ))}
           </div>
+          <Link
+            href="/percorso"
+            className="text-xs text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
+          >
+            Il mio percorso
+          </Link>
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
             className="text-xs text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"

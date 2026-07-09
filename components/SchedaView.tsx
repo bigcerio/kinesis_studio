@@ -86,8 +86,12 @@ export default function SchedaView({ trial }: { trial: boolean }) {
   }, []);
 
   useEffect(() => {
-    if (trial && groupIds.length > 0) {
-      fetch("/api/scheda/mark-trial", { method: "POST" }).catch(() => {});
+    if (groupIds.length > 0) {
+      fetch("/api/scheda/record", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ groupIds, trial }),
+      }).catch(() => {});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trial, groupIds.length > 0]);

@@ -26,10 +26,11 @@ model User {
   // Prova gratuita: 1 sola generazione di scheda, valida 3 giorni da createdAt.
   trialGenerationUsedAt DateTime?
 
-  accounts      Account[]
-  sessions      Session[]
-  subscription  Subscription?
-  anamnesi      AnamnesiRecord[]
+  accounts          Account[]
+  sessions          Session[]
+  subscription      Subscription?
+  anamnesi          AnamnesiRecord[]
+  schedaGenerations SchedaGeneration[]
 }
 
 model Account {
@@ -116,6 +117,18 @@ model AnamnesiRecord {
   eserciziDaEvitare     String?
   note                  String?
   createdAt             DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model SchedaGeneration {
+  id             String   @id @default(cuid())
+  userId         String
+  muscleGroupIds String[]
+  trial          Boolean  @default(false)
+  createdAt      DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
