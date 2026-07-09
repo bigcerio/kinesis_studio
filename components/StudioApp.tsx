@@ -9,7 +9,7 @@ import SelectionPanel from "@/components/SelectionPanel";
 import Tooltip2D from "@/components/Tooltip2D";
 import BodyDiagram2D, { type HoverInfo2D } from "@/components/BodyDiagram2D";
 
-export default function StudioApp() {
+export default function StudioApp({ isAdmin = false }: { isAdmin?: boolean }) {
   const [sex, setSex] = useState<Sex>("F");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [hover, setHover] = useState<HoverInfo2D | null>(null);
@@ -74,6 +74,14 @@ export default function StudioApp() {
           >
             Il mio percorso
           </Link>
+          {isAdmin && (
+            <Link
+              href="/admin"
+              className="text-xs text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
+            >
+              Admin
+            </Link>
+          )}
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
             className="text-xs text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"

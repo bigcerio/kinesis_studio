@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
 import StudioApp from "@/components/StudioApp";
 
 // Gate esplicito a livello di pagina (non ci si affida solo a proxy.ts):
@@ -14,5 +15,10 @@ export default async function CorpoPage() {
     redirect("/accedi?next=/corpo");
   }
 
-  return <StudioApp />;
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { isAdmin: true },
+  });
+
+  return <StudioApp isAdmin={Boolean(user?.isAdmin)} />;
 }

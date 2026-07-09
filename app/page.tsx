@@ -25,7 +25,8 @@ export default function Home() {
         className="flex items-center justify-between px-6 py-5 opacity-0 [animation-fill-mode:forwards]"
         style={{ animation: "fade-up 0.5s ease-out 0.05s forwards" }}
       >
-        <span className="text-sm font-semibold tracking-tight text-slate-900">
+        <span className="flex items-center gap-2 text-sm font-semibold tracking-tight text-slate-900">
+          <span className="h-2.5 w-2.5 rounded-[3px] bg-blue-600" aria-hidden />
           Kinesis Studio
         </span>
         <div className="flex items-center gap-3 text-xs">
@@ -44,6 +45,7 @@ export default function Home() {
       <main className="flex flex-1 flex-col">
         <section className="relative mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 items-center gap-10 px-6 py-12 sm:py-16 md:grid-cols-2 md:gap-6">
           {/* Sfondo decorativo */}
+          <div aria-hidden className="bg-grid-pattern pointer-events-none absolute inset-0 -z-20" />
           <div
             aria-hidden
             className="pointer-events-none absolute right-[-10%] top-1/2 -z-10 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-blue-100/70 blur-3xl"
@@ -95,8 +97,17 @@ export default function Home() {
             className="relative mx-auto w-full max-w-xs opacity-0"
             style={{ animation: "fade-in 0.8s ease-out 0.3s forwards" }}
           >
+            {/* Angoli "da rilevazione clinica": firma visiva ricorrente, non decorativa */}
+            <span
+              aria-hidden
+              className="absolute -left-2 -top-2 h-4 w-4 border-l-2 border-t-2 border-blue-300"
+            />
+            <span
+              aria-hidden
+              className="absolute -bottom-2 -right-2 h-4 w-4 border-b-2 border-r-2 border-blue-300"
+            />
             <div
-              className="rounded-3xl border border-slate-200 bg-white/80 p-7 shadow-xl backdrop-blur-sm"
+              className="rotate-[-1deg] rounded-3xl border border-slate-200 bg-white/80 p-7 shadow-xl backdrop-blur-sm transition-transform duration-500 hover:rotate-0"
               style={{ animation: "float-slow 6s ease-in-out infinite" }}
             >
               <div className="flex items-center gap-2 text-blue-600">
@@ -112,14 +123,18 @@ export default function Home() {
                 <span className="text-xs font-medium">Metodo clinico</span>
               </div>
 
-              <p className="mt-5 text-3xl font-semibold tracking-tight text-slate-900">20</p>
+              <p className="mt-5 text-3xl font-semibold tabular-nums tracking-tight text-slate-900">
+                20
+              </p>
               <p className="mt-1 text-xs leading-relaxed text-slate-500">
                 distretti muscolari mappati con precisione anatomica
               </p>
 
               <div className="my-5 h-px bg-slate-100" />
 
-              <p className="text-3xl font-semibold tracking-tight text-slate-900">100%</p>
+              <p className="text-3xl font-semibold tabular-nums tracking-tight text-slate-900">
+                100%
+              </p>
               <p className="mt-1 text-xs leading-relaxed text-slate-500">
                 costruita su un&apos;anamnesi reale, non su un algoritmo generico
               </p>
@@ -162,14 +177,20 @@ export default function Home() {
             {steps.map((s, i) => (
               <div
                 key={s.n}
-                className="group rounded-2xl border border-slate-200 bg-white p-5 opacity-0 transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 opacity-0 transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
                 style={{ animation: `fade-up 0.5s ease-out ${0.45 + i * 0.1}s forwards` }}
               >
-                <span className="text-xs font-medium text-blue-600 transition-colors">
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-2 -top-4 select-none text-7xl font-bold tabular-nums text-slate-50 transition-colors duration-300 group-hover:text-blue-50"
+                >
                   {s.n}
                 </span>
-                <h2 className="mt-2 text-sm font-semibold text-slate-900">{s.title}</h2>
-                <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{s.text}</p>
+                <span className="relative text-xs font-medium tabular-nums text-blue-600">
+                  {s.n}
+                </span>
+                <h2 className="relative mt-2 text-sm font-semibold text-slate-900">{s.title}</h2>
+                <p className="relative mt-1.5 text-xs leading-relaxed text-slate-500">{s.text}</p>
               </div>
             ))}
           </div>

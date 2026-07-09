@@ -2,14 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  emptyAnamnesi,
-  obiettiviOptions,
-  controindicazioniOptions,
-  saveAnamnesi,
-  type AnamnesiData,
-  type Sex,
-} from "@/lib/anamnesi";
+import { emptyAnamnesi, obiettiviOptions, saveAnamnesi, type AnamnesiData, type Sex } from "@/lib/anamnesi";
 
 function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
   return (
@@ -53,11 +46,12 @@ export default function AnamnesiForm() {
     <form onSubmit={handleSubmit} className="mx-auto flex w-full max-w-2xl flex-col gap-5 px-5 py-8">
       <div>
         <h1 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-          Anamnesi
+          Prima di iniziare
         </h1>
         <p className="mt-1 text-sm text-slate-500">
-          Alcune informazioni prima di iniziare, per costruire una scheda coerente con la tua
-          condizione. I dati restano privati e vengono validati dal professionista.
+          Poche domande per orientare la tua scheda. Il quadro clinico completo — storia articolare,
+          patologie pregresse, controindicazioni specifiche — viene approfondito con il professionista
+          all&apos;attivazione dell&apos;abbonamento.
         </p>
       </div>
 
@@ -90,28 +84,10 @@ export default function AnamnesiForm() {
               onChange={(e) => update("eta", e.target.value)}
             />
           </Field>
-          <Field label="Peso (kg)">
-            <input
-              type="number"
-              min={0}
-              className={inputClass}
-              value={data.peso}
-              onChange={(e) => update("peso", e.target.value)}
-            />
-          </Field>
-          <Field label="Altezza (cm)">
-            <input
-              type="number"
-              min={0}
-              className={inputClass}
-              value={data.altezza}
-              onChange={(e) => update("altezza", e.target.value)}
-            />
-          </Field>
         </div>
       </Section>
 
-      <Section title="Obiettivi" hint="Seleziona una o più voci">
+      <Section title="Obiettivo principale" hint="Seleziona una o più voci">
         <div className="flex flex-wrap gap-2">
           {obiettiviOptions.map((opt) => (
             <button
@@ -130,164 +106,14 @@ export default function AnamnesiForm() {
         </div>
       </Section>
 
-      <Section title="Dolore attuale">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <Field label="Zona interessata">
-            <input
-              type="text"
-              placeholder="es. lombare, cervicale, ginocchio destro…"
-              className={inputClass}
-              value={data.doloreZone}
-              onChange={(e) => update("doloreZone", e.target.value)}
-            />
-          </Field>
-          <Field label="Da quanto tempo">
-            <select
-              className={inputClass}
-              value={data.doloreDurata}
-              onChange={(e) => update("doloreDurata", e.target.value)}
-            >
-              <option value="">Seleziona…</option>
-              <option value="acuto">Acuto (&lt; 2 settimane)</option>
-              <option value="subacuto">Subacuto (2-12 settimane)</option>
-              <option value="cronico">Cronico (&gt; 12 settimane)</option>
-              <option value="assente">Nessun dolore attuale</option>
-            </select>
-          </Field>
-        </div>
-        <Field label={`Intensità percepita (0-10): ${data.doloreIntensita}`}>
-          <input
-            type="range"
-            min={0}
-            max={10}
-            value={data.doloreIntensita}
-            onChange={(e) => update("doloreIntensita", Number(e.target.value))}
-          />
-        </Field>
-      </Section>
-
-      <Section title="Storia clinica">
-        <Field label="Patologie pregresse">
-          <textarea
-            className={inputClass}
-            rows={2}
-            value={data.patologiePregresse}
-            onChange={(e) => update("patologiePregresse", e.target.value)}
-          />
-        </Field>
-        <Field label="Interventi chirurgici">
-          <textarea
-            className={inputClass}
-            rows={2}
-            value={data.interventiChirurgici}
-            onChange={(e) => update("interventiChirurgici", e.target.value)}
-          />
-        </Field>
-        <Field label="Farmaci attualmente assunti">
-          <textarea
-            className={inputClass}
-            rows={2}
-            value={data.farmaci}
-            onChange={(e) => update("farmaci", e.target.value)}
-          />
-        </Field>
-      </Section>
-
-      <Section
-        title="Quadro articolare e mobilità"
-        hint="Fondamentale per adattare l'intensità e escludere esercizi controindicati"
-      >
-        <Field label="Patologie articolari specifiche (ernie, protrusioni, artrosi, instabilità…)">
-          <textarea
-            className={inputClass}
-            rows={2}
-            placeholder="es. ernia L4-L5, protrusione C5-C6, artrosi ginocchio destro…"
-            value={data.patologieArticolari}
-            onChange={(e) => update("patologieArticolari", e.target.value)}
-          />
-        </Field>
-        <Field label="Limitazioni di mobilità riscontrate">
-          <textarea
-            className={inputClass}
-            rows={2}
-            placeholder="es. limitata rotazione cervicale, difficoltà a flettere l'anca…"
-            value={data.problemiMobilita}
-            onChange={(e) => update("problemiMobilita", e.target.value)}
-          />
-        </Field>
-        <Field label="Origine del problema — come si è sviluppato">
-          <textarea
-            className={inputClass}
-            rows={2}
-            placeholder="es. trauma acuto (caduta, incidente), insorgenza graduale, posturale/da sovraccarico lavorativo…"
-            value={data.origineProblema}
-            onChange={(e) => update("origineProblema", e.target.value)}
-          />
-        </Field>
-        <Field label="Indicazioni o restrizioni ricevute dal medico/specialista">
-          <textarea
-            className={inputClass}
-            rows={2}
-            placeholder="es. evitare carichi assiali, no impatto, fisioterapia in corso…"
-            value={data.indicazioniMediche}
-            onChange={(e) => update("indicazioniMediche", e.target.value)}
-          />
-        </Field>
-      </Section>
-
-      <Section title="Attività fisica praticata">
-        <Field label="Attività/sport attualmente praticati">
-          <textarea
-            className={inputClass}
-            rows={2}
-            placeholder="es. corsa 2 volte a settimana, nuoto, nessuna attività regolare…"
-            value={data.attivitaSvolta}
-            onChange={(e) => update("attivitaSvolta", e.target.value)}
-          />
-        </Field>
-        <Field label="Tipo di allenamento svolto">
-          <textarea
-            className={inputClass}
-            rows={2}
-            placeholder="es. pesi in palestra, corsi di gruppo, yoga/pilates, allenamento a corpo libero…"
-            value={data.tipoAllenamento}
-            onChange={(e) => update("tipoAllenamento", e.target.value)}
-          />
-        </Field>
-      </Section>
-
-      <Section
-        title="Preferenze ed esercizi da evitare"
-        hint="Movimenti non eseguibili, sconsigliati o semplicemente non graditi"
-      >
-        <Field label="Esercizi, posizioni o movimenti da evitare">
-          <textarea
-            className={inputClass}
-            rows={2}
-            placeholder="es. non riesco a stare in ginocchio, evito esercizi a terra in supino, no salti/impatto, non gradisco esercizi con corda…"
-            value={data.eserciziDaEvitare}
-            onChange={(e) => update("eserciziDaEvitare", e.target.value)}
-          />
-        </Field>
-      </Section>
-
-      <Section title="Controindicazioni" hint="Seleziona ciò che si applica">
-        <div className="flex flex-wrap gap-2">
-          {controindicazioniOptions.map((opt) => (
-            <button
-              type="button"
-              key={opt}
-              onClick={() => update("controindicazioni", toggleInArray(data.controindicazioni, opt))}
-              className={`rounded-full border px-3 py-1.5 text-xs transition-colors ${
-                data.controindicazioni.includes(opt)
-                  ? "border-red-700 bg-red-700 text-white"
-                  : "border-slate-200 text-slate-600 hover:border-slate-400 dark:border-slate-800 dark:text-slate-300"
-              }`}
-            >
-              {opt}
-            </button>
-          ))}
-        </div>
+      <Section title="Zona di fastidio" hint="Facoltativo — se presente una zona da tenere d'occhio">
+        <input
+          type="text"
+          placeholder="es. lombare, cervicale, ginocchio destro…"
+          className={inputClass}
+          value={data.doloreZone}
+          onChange={(e) => update("doloreZone", e.target.value)}
+        />
       </Section>
 
       <Section title="Livello di attività fisica attuale">
@@ -304,15 +130,13 @@ export default function AnamnesiForm() {
         </select>
       </Section>
 
-      <Section title="Note aggiuntive">
-        <textarea
-          className={inputClass}
-          rows={3}
-          placeholder="Qualsiasi informazione utile al professionista…"
-          value={data.note}
-          onChange={(e) => update("note", e.target.value)}
-        />
-      </Section>
+      <div className="rounded-2xl border border-blue-100 bg-blue-50/60 p-4 text-xs leading-relaxed text-blue-900 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-200">
+        <p className="font-medium">Con l&apos;abbonamento sblocchi l&apos;anamnesi clinica completa</p>
+        <p className="mt-1 text-blue-800/80 dark:text-blue-300/80">
+          Patologie pregresse, interventi chirurgici, farmaci, quadro articolare specifico e
+          restrizioni mediche — validati insieme al professionista per una scheda davvero su misura.
+        </p>
+      </div>
 
       <button
         type="submit"

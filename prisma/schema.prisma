@@ -25,6 +25,7 @@ model User {
   createdAt             DateTime  @default(now())
   // Prova gratuita: 1 sola generazione di scheda, valida 3 giorni da createdAt.
   trialGenerationUsedAt DateTime?
+  isAdmin               Boolean   @default(false)
 
   accounts          Account[]
   sessions          Session[]

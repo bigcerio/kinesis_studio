@@ -69,3 +69,13 @@ body {
   background-image: radial-gradient(circle, #2a7dd422 1px, transparent 1px);
   background-size: 22px 22px;
 }
+
+/* Griglia tecnica molto tenue per la hero: richiama il rigore "clinico" senza
+   competere con il testo. Va sempre sfumata con una mask, mai a piena forza. */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, #1a2a4a0d 1px, transparent 1px),
+    linear-gradient(to bottom, #1a2a4a0d 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+}

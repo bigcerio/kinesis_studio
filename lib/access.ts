@@ -12,6 +12,11 @@ export type Entitlement =
  * - non ha ancora usato la prova gratuita (1 generazione) ed e' entro TRIAL_DAYS dalla registrazione.
  */
 export async function getSchedaEntitlement(userId: string): Promise<Entitlement> {
+  // Paywall in pausa per fase di test: bypass globale finché Stripe non è collegato per davvero.
+  if (process.env.PAYWALL_DISABLED === "true") {
+    return { allowed: true, trial: false };
+  }
+
   const user = await prisma.user.findUnique({
     where: { id: userId },
     include: { subscription: true },
