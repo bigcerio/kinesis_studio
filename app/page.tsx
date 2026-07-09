@@ -20,21 +20,21 @@ const steps = [
 
 export default function Home() {
   return (
-    <div className="flex min-h-dvh flex-col overflow-x-clip bg-stone-50">
+    <div className="flex min-h-dvh flex-col overflow-x-clip bg-slate-50">
       <header
         className="flex items-center justify-between px-6 py-5 opacity-0 [animation-fill-mode:forwards]"
         style={{ animation: "fade-up 0.5s ease-out 0.05s forwards" }}
       >
-        <span className="text-sm font-semibold tracking-tight text-stone-900">
+        <span className="text-sm font-semibold tracking-tight text-slate-900">
           Kinesis Studio
         </span>
         <div className="flex items-center gap-3 text-xs">
-          <Link href="/accedi" className="text-stone-500 transition-colors hover:text-stone-800">
+          <Link href="/accedi" className="text-slate-500 transition-colors hover:text-slate-800">
             Accedi
           </Link>
           <Link
             href="/registrati"
-            className="rounded-full bg-stone-900 px-3.5 py-1.5 font-medium text-white transition-colors hover:bg-stone-800"
+            className="rounded-full bg-slate-900 px-3.5 py-1.5 font-medium text-white transition-colors hover:bg-slate-800"
           >
             Registrati
           </Link>
@@ -46,26 +46,26 @@ export default function Home() {
           {/* Sfondo decorativo */}
           <div
             aria-hidden
-            className="pointer-events-none absolute right-[-10%] top-1/2 -z-10 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-emerald-100/70 blur-3xl"
+            className="pointer-events-none absolute right-[-10%] top-1/2 -z-10 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-blue-100/70 blur-3xl"
           />
 
           <div className="text-center md:text-left">
             <span
-              className="inline-block rounded-full border border-stone-200 bg-white px-3 py-1 text-[11px] font-medium text-stone-500 opacity-0"
+              className="inline-block rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-500 opacity-0"
               style={{ animation: "fade-up 0.5s ease-out 0.1s forwards" }}
             >
               Osteopatia funzionale · anti-aging · recupero
             </span>
 
             <h1
-              className="mt-4 text-3xl font-semibold tracking-tight text-stone-900 opacity-0 sm:text-4xl"
+              className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 opacity-0 sm:text-4xl"
               style={{ animation: "fade-up 0.6s ease-out 0.18s forwards" }}
             >
               La tua scheda. Costruita sul tuo corpo, non su un modello.
             </h1>
 
             <p
-              className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-stone-500 opacity-0 md:mx-0"
+              className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-500 opacity-0 md:mx-0"
               style={{ animation: "fade-up 0.6s ease-out 0.28s forwards" }}
             >
               Anamnesi vera. Distretto muscolare esatto. Esercizio con basi scientifiche.
@@ -78,13 +78,13 @@ export default function Home() {
             >
               <Link
                 href="/anamnesi"
-                className="inline-block rounded-full bg-emerald-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md"
+                className="inline-block rounded-full bg-blue-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md"
               >
                 Inizia ora
               </Link>
               <Link
                 href="/abbonamento"
-                className="inline-block rounded-full px-5 py-3 text-sm font-medium text-stone-600 transition-colors hover:text-stone-900"
+                className="inline-block rounded-full px-5 py-3 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
               >
                 Vedi i piani →
               </Link>
@@ -96,10 +96,10 @@ export default function Home() {
             style={{ animation: "fade-in 0.8s ease-out 0.3s forwards" }}
           >
             <div
-              className="rounded-3xl border border-stone-200 bg-white/80 p-7 shadow-xl backdrop-blur-sm"
+              className="rounded-3xl border border-slate-200 bg-white/80 p-7 shadow-xl backdrop-blur-sm"
               style={{ animation: "float-slow 6s ease-in-out infinite" }}
             >
-              <div className="flex items-center gap-2 text-emerald-600">
+              <div className="flex items-center gap-2 text-blue-600">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path
                     d="M2 12h4l2-7 4 14 3-9 2 5h5"
@@ -112,15 +112,15 @@ export default function Home() {
                 <span className="text-xs font-medium">Metodo clinico</span>
               </div>
 
-              <p className="mt-5 text-3xl font-semibold tracking-tight text-stone-900">20</p>
-              <p className="mt-1 text-xs leading-relaxed text-stone-500">
+              <p className="mt-5 text-3xl font-semibold tracking-tight text-slate-900">20</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">
                 distretti muscolari mappati con precisione anatomica
               </p>
 
-              <div className="my-5 h-px bg-stone-100" />
+              <div className="my-5 h-px bg-slate-100" />
 
-              <p className="text-3xl font-semibold tracking-tight text-stone-900">100%</p>
-              <p className="mt-1 text-xs leading-relaxed text-stone-500">
+              <p className="text-3xl font-semibold tracking-tight text-slate-900">100%</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">
                 costruita su un&apos;anamnesi reale, non su un algoritmo generico
               </p>
             </div>
@@ -142,7 +142,7 @@ export default function Home() {
             >
               <source src="/hero-recovery.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-stone-900/80 via-stone-900/35 to-stone-900/10" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-slate-900/80 via-slate-900/35 to-slate-900/10" />
             <div className="px-6 py-10 sm:px-10">
               <p className="max-w-md text-lg font-medium leading-snug text-white sm:text-xl">
                 Stesso rigore di uno studio clinico. Zero compromessi sul metodo.
@@ -162,21 +162,21 @@ export default function Home() {
             {steps.map((s, i) => (
               <div
                 key={s.n}
-                className="group rounded-2xl border border-stone-200 bg-white p-5 opacity-0 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 opacity-0 transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
                 style={{ animation: `fade-up 0.5s ease-out ${0.45 + i * 0.1}s forwards` }}
               >
-                <span className="text-xs font-medium text-emerald-600 transition-colors">
+                <span className="text-xs font-medium text-blue-600 transition-colors">
                   {s.n}
                 </span>
-                <h2 className="mt-2 text-sm font-semibold text-stone-900">{s.title}</h2>
-                <p className="mt-1.5 text-xs leading-relaxed text-stone-500">{s.text}</p>
+                <h2 className="mt-2 text-sm font-semibold text-slate-900">{s.title}</h2>
+                <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{s.text}</p>
               </div>
             ))}
           </div>
         </section>
       </main>
 
-      <footer className="px-6 py-5 text-center text-[11px] text-stone-400">
+      <footer className="px-6 py-5 text-center text-[11px] text-slate-400">
         © {new Date().getFullYear()} Kinesis Studio
       </footer>
     </div>

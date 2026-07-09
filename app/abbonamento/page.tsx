@@ -64,9 +64,9 @@ function AbbonamentoContent() {
   };
 
   return (
-    <div className="min-h-dvh bg-stone-50 px-6 py-12 dark:bg-stone-950">
+    <div className="min-h-dvh bg-slate-50 px-6 py-12 dark:bg-slate-950">
       <div className="mx-auto max-w-3xl text-center">
-        <h1 className="text-2xl font-semibold tracking-tight text-stone-900 dark:text-stone-100">
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
           Scegli il tuo abbonamento
         </h1>
         {reason && reasonMessage[reason] && (
@@ -80,20 +80,20 @@ function AbbonamentoContent() {
               key={tier.id}
               className={`flex flex-col rounded-2xl border p-6 text-left ${
                 "highlighted" in tier && tier.highlighted
-                  ? "border-emerald-500 bg-white shadow-md dark:border-emerald-500 dark:bg-stone-900"
-                  : "border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900"
+                  ? "border-blue-500 bg-white shadow-md dark:border-blue-500 dark:bg-slate-900"
+                  : "border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
               }`}
             >
-              <p className="text-sm font-medium text-stone-500">{tier.label}</p>
-              <p className="mt-2 text-3xl font-semibold text-stone-900 dark:text-stone-100">
+              <p className="text-sm font-medium text-slate-500">{tier.label}</p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900 dark:text-slate-100">
                 {tier.price}
-                <span className="text-sm font-normal text-stone-400">{tier.period}</span>
+                <span className="text-sm font-normal text-slate-400">{tier.period}</span>
               </p>
-              {tier.note && <p className="mt-1 text-xs text-emerald-600 dark:text-emerald-400">{tier.note}</p>}
+              {tier.note && <p className="mt-1 text-xs text-blue-600 dark:text-blue-400">{tier.note}</p>}
               <button
                 onClick={() => handleSubscribe(tier.id)}
                 disabled={loadingTier === tier.id}
-                className="mt-6 rounded-2xl bg-emerald-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700 disabled:opacity-60 dark:bg-emerald-500 dark:text-emerald-950 dark:hover:bg-emerald-400"
+                className="mt-6 rounded-2xl bg-blue-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-60 dark:bg-blue-500 dark:text-blue-950 dark:hover:bg-blue-400"
               >
                 {loadingTier === tier.id ? "Attendere…" : "Abbonati"}
               </button>

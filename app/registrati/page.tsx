@@ -41,24 +41,24 @@ export default function RegistratiPage() {
   };
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-stone-50 px-6 dark:bg-stone-950">
-      <div className="w-full max-w-sm rounded-2xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-        <h1 className="text-lg font-semibold text-stone-900 dark:text-stone-100">Crea account</h1>
-        <p className="mt-1 text-sm text-stone-500">
+    <div className="flex min-h-dvh items-center justify-center bg-slate-50 px-6 dark:bg-slate-950">
+      <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+        <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Crea account</h1>
+        <p className="mt-1 text-sm text-slate-500">
           3 giorni di prova gratuita con una scheda di esempio, poi scegli l&apos;abbonamento.
         </p>
 
         <button
           onClick={() => signIn("google", { callbackUrl: "/anamnesi" })}
-          className="mt-5 w-full rounded-2xl border border-stone-200 py-2.5 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-stone-800"
+          className="mt-5 w-full rounded-2xl border border-slate-200 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
         >
           Continua con Google
         </button>
 
-        <div className="my-4 flex items-center gap-3 text-xs text-stone-400">
-          <div className="h-px flex-1 bg-stone-200 dark:bg-stone-800" />
+        <div className="my-4 flex items-center gap-3 text-xs text-slate-400">
+          <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
           oppure
-          <div className="h-px flex-1 bg-stone-200 dark:bg-stone-800" />
+          <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -67,7 +67,7 @@ export default function RegistratiPage() {
             placeholder="Nome"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm outline-none focus:border-emerald-400 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-blue-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
           />
           <input
             type="email"
@@ -75,7 +75,7 @@ export default function RegistratiPage() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm outline-none focus:border-emerald-400 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-blue-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
           />
           <input
             type="password"
@@ -84,21 +84,21 @@ export default function RegistratiPage() {
             placeholder="Password (min. 8 caratteri)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm outline-none focus:border-emerald-400 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-blue-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
           />
           {error && <p className="text-xs text-red-600 dark:text-red-400">{error}</p>}
           <button
             type="submit"
             disabled={loading}
-            className="rounded-2xl bg-emerald-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700 disabled:opacity-60 dark:bg-emerald-500 dark:text-emerald-950 dark:hover:bg-emerald-400"
+            className="rounded-2xl bg-blue-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-60 dark:bg-blue-500 dark:text-blue-950 dark:hover:bg-blue-400"
           >
             {loading ? "Creazione account…" : "Crea account"}
           </button>
         </form>
 
-        <p className="mt-4 text-center text-xs text-stone-400">
+        <p className="mt-4 text-center text-xs text-slate-400">
           Hai già un account?{" "}
-          <Link href="/accedi" className="font-medium text-stone-600 underline dark:text-stone-300">
+          <Link href="/accedi" className="font-medium text-slate-600 underline dark:text-slate-300">
             Accedi
           </Link>
         </p>

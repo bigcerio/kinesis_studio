@@ -39,29 +39,29 @@ export default function StudioApp() {
   };
 
   return (
-    <div className="flex h-dvh w-full flex-col bg-stone-50 dark:bg-stone-950">
-      <header className="flex items-center justify-between border-b border-stone-200 px-5 py-3 dark:border-stone-800">
+    <div className="flex h-dvh w-full flex-col bg-slate-50 dark:bg-slate-950">
+      <header className="flex items-center justify-between border-b border-slate-200 px-5 py-3 dark:border-slate-800">
         <div className="flex items-center gap-3">
-          <Link href="/anamnesi" className="text-xs text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
+          <Link href="/anamnesi" className="text-xs text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
             ← Anamnesi
           </Link>
           <div>
-            <h1 className="text-base font-semibold tracking-tight text-stone-900 dark:text-stone-100">
+            <h1 className="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100">
               Kinesis Studio
             </h1>
-            <p className="text-xs text-stone-400">Prototipo — mappa corporea interattiva</p>
+            <p className="text-xs text-slate-400">Prototipo — mappa corporea interattiva</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 rounded-full border border-stone-200 p-1 dark:border-stone-800">
+          <div className="flex items-center gap-1 rounded-full border border-slate-200 p-1 dark:border-slate-800">
             {(["F", "M"] as Sex[]).map((s) => (
               <button
                 key={s}
                 onClick={() => setSex(s)}
                 className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
                   sex === s
-                    ? "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950"
-                    : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
+                    ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-blue-950"
+                    : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
                 }`}
               >
                 {s === "F" ? "Donna" : "Uomo"}
@@ -70,13 +70,13 @@ export default function StudioApp() {
           </div>
           <Link
             href="/percorso"
-            className="text-xs text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
+            className="text-xs text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
           >
             Il mio percorso
           </Link>
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
-            className="text-xs text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
+            className="text-xs text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
           >
             Esci
           </button>

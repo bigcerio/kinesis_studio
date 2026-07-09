@@ -13,9 +13,9 @@ import {
 
 function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-950">
-      <h2 className="text-sm font-semibold text-stone-900 dark:text-stone-100">{title}</h2>
-      {hint && <p className="mt-0.5 text-xs text-stone-400">{hint}</p>}
+    <section className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+      <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</h2>
+      {hint && <p className="mt-0.5 text-xs text-slate-400">{hint}</p>}
       <div className="mt-4 flex flex-col gap-4">{children}</div>
     </section>
   );
@@ -24,14 +24,14 @@ function Section({ title, hint, children }: { title: string; hint?: string; chil
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-xs font-medium text-stone-600 dark:text-stone-300">{label}</span>
+      <span className="text-xs font-medium text-slate-600 dark:text-slate-300">{label}</span>
       {children}
     </label>
   );
 }
 
 const inputClass =
-  "rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100";
+  "rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none focus:border-blue-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100";
 
 function toggleInArray(list: string[], value: string): string[] {
   return list.includes(value) ? list.filter((v) => v !== value) : [...list, value];
@@ -52,10 +52,10 @@ export default function AnamnesiForm() {
   return (
     <form onSubmit={handleSubmit} className="mx-auto flex w-full max-w-2xl flex-col gap-5 px-5 py-8">
       <div>
-        <h1 className="text-xl font-semibold tracking-tight text-stone-900 dark:text-stone-100">
+        <h1 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
           Anamnesi
         </h1>
-        <p className="mt-1 text-sm text-stone-500">
+        <p className="mt-1 text-sm text-slate-500">
           Alcune informazioni prima di iniziare, per costruire una scheda coerente con la tua
           condizione. I dati restano privati e vengono validati dal professionista.
         </p>
@@ -64,7 +64,7 @@ export default function AnamnesiForm() {
       <Section title="Dati generali">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <Field label="Sesso">
-            <div className="flex gap-1 rounded-2xl border border-stone-200 p-1 dark:border-stone-800">
+            <div className="flex gap-1 rounded-2xl border border-slate-200 p-1 dark:border-slate-800">
               {(["F", "M"] as Sex[]).map((s) => (
                 <button
                   type="button"
@@ -72,8 +72,8 @@ export default function AnamnesiForm() {
                   onClick={() => update("sex", s)}
                   className={`flex-1 rounded-xl py-1.5 text-xs font-medium transition-colors ${
                     data.sex === s
-                      ? "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950"
-                      : "text-stone-500"
+                      ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-blue-950"
+                      : "text-slate-500"
                   }`}
                 >
                   {s === "F" ? "Donna" : "Uomo"}
@@ -120,8 +120,8 @@ export default function AnamnesiForm() {
               onClick={() => update("obiettivi", toggleInArray(data.obiettivi, opt))}
               className={`rounded-full border px-3 py-1.5 text-xs transition-colors ${
                 data.obiettivi.includes(opt)
-                  ? "border-emerald-600 bg-emerald-600 text-white dark:border-emerald-500 dark:bg-emerald-500 dark:text-emerald-950"
-                  : "border-stone-200 text-stone-600 hover:border-stone-400 dark:border-stone-800 dark:text-stone-300"
+                  ? "border-blue-600 bg-blue-600 text-white dark:border-blue-500 dark:bg-blue-500 dark:text-blue-950"
+                  : "border-slate-200 text-slate-600 hover:border-slate-400 dark:border-slate-800 dark:text-slate-300"
               }`}
             >
               {opt}
@@ -281,7 +281,7 @@ export default function AnamnesiForm() {
               className={`rounded-full border px-3 py-1.5 text-xs transition-colors ${
                 data.controindicazioni.includes(opt)
                   ? "border-red-700 bg-red-700 text-white"
-                  : "border-stone-200 text-stone-600 hover:border-stone-400 dark:border-stone-800 dark:text-stone-300"
+                  : "border-slate-200 text-slate-600 hover:border-slate-400 dark:border-slate-800 dark:text-slate-300"
               }`}
             >
               {opt}
@@ -316,7 +316,7 @@ export default function AnamnesiForm() {
 
       <button
         type="submit"
-        className="mt-2 w-full rounded-2xl bg-emerald-600 py-3 text-sm font-medium text-white transition-colors hover:bg-emerald-700 dark:bg-emerald-500 dark:text-emerald-950 dark:hover:bg-emerald-400"
+        className="mt-2 w-full rounded-2xl bg-blue-600 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:text-blue-950 dark:hover:bg-blue-400"
       >
         Continua alla mappa corporea
       </button>

@@ -19,27 +19,27 @@ export default async function PercorsoPage() {
 
   return (
     <div className="bg-dot-pattern min-h-dvh">
-      <header className="flex items-center justify-between border-b border-stone-200 px-5 py-3">
+      <header className="flex items-center justify-between border-b border-slate-200 px-5 py-3">
         <div className="flex items-center gap-3">
-          <Link href="/corpo" className="text-xs text-stone-400 hover:text-stone-700">
+          <Link href="/corpo" className="text-xs text-slate-400 hover:text-slate-700">
             ← Mappa corporea
           </Link>
           <div>
-            <h1 className="text-base font-semibold tracking-tight text-stone-900">Il mio percorso</h1>
-            <p className="text-xs text-stone-400">Storico delle schede generate</p>
+            <h1 className="text-base font-semibold tracking-tight text-slate-900">Il mio percorso</h1>
+            <p className="text-xs text-slate-400">Storico delle schede generate</p>
           </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-2xl px-6 py-8">
         {generations.length === 0 ? (
-          <div className="rounded-2xl border border-stone-200 bg-white p-8 text-center">
-            <p className="text-sm text-stone-500">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center">
+            <p className="text-sm text-slate-500">
               Non hai ancora generato nessuna scheda.
             </p>
             <Link
               href="/corpo"
-              className="mt-4 inline-block rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-emerald-700"
+              className="mt-4 inline-block rounded-full bg-blue-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-blue-700"
             >
               Inizia dalla mappa corporea
             </Link>
@@ -53,10 +53,10 @@ export default async function PercorsoPage() {
               return (
                 <li
                   key={g.id}
-                  className="rounded-2xl border border-stone-200 bg-white p-4"
+                  className="rounded-2xl border border-slate-200 bg-white p-4"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <p className="text-sm font-medium text-stone-900">
+                    <p className="text-sm font-medium text-slate-900">
                       {g.createdAt.toLocaleDateString("it-IT", {
                         day: "numeric",
                         month: "long",
@@ -69,7 +69,7 @@ export default async function PercorsoPage() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-1.5 text-xs text-stone-500">
+                  <p className="mt-1.5 text-xs text-slate-500">
                     {names.length > 0 ? names.join(", ") : "Nessun distretto registrato"}
                   </p>
                 </li>

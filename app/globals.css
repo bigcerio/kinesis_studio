@@ -7,20 +7,19 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #171e2b; /* deep navy near-black, hsl(215 28% 12%) */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plus-jakarta-sans);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
 }
 
 @keyframes fade-up {
@@ -66,7 +65,7 @@ body {
 /* Pattern a puntini molto sottile per le sezioni interne, alternativa allo
    sfondo bianco piatto. Usare su contenitori, mai direttamente sul testo. */
 .bg-dot-pattern {
-  background-color: #fafaf9;
-  background-image: radial-gradient(circle, #05966922 1px, transparent 1px);
+  background-color: #f8fafc;
+  background-image: radial-gradient(circle, #2a7dd422 1px, transparent 1px);
   background-size: 22px 22px;
 }

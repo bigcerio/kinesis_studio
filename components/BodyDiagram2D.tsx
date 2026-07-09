@@ -29,7 +29,7 @@ function Hotspot({
 }) {
   const [hovering, setHovering] = useState(false);
 
-  const fill = isSelected ? "#059669" : "#8f6a52";
+  const fill = isSelected ? "#2a7dd4" : "#8f6a52";
   const opacity = isSelected ? 0.55 : hovering ? 0.4 : 0.001;
 
   return (
@@ -64,15 +64,15 @@ export default function BodyDiagram2D({ selected, onToggle, onHover }: Props) {
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 py-4">
-      <div className="flex items-center gap-1 rounded-full border border-stone-200 p-1">
+      <div className="flex items-center gap-1 rounded-full border border-slate-200 p-1">
         {(["front", "back"] as View2D[]).map((v) => (
           <button
             key={v}
             onClick={() => setView(v)}
             className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
               view === v
-                ? "bg-emerald-600 text-white"
-                : "text-stone-500 hover:text-stone-800"
+                ? "bg-blue-600 text-white"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             {v === "front" ? "Fronte" : "Retro"}
@@ -108,7 +108,7 @@ export default function BodyDiagram2D({ selected, onToggle, onHover }: Props) {
         href="https://commons.wikimedia.org/wiki/File:Muscular_system.svg"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[10px] text-stone-300 hover:text-stone-400"
+        className="text-[10px] text-slate-300 hover:text-slate-400"
       >
         Illustrazione: Termininja / Wikimedia Commons (CC BY-SA 3.0)
       </a>
