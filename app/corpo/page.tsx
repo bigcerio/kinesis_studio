@@ -1,10 +1,18 @@
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import StudioApp from "@/components/StudioApp";
 
-// Forza il rendering dinamico: una pagina completamente statica puo' essere
-// servita da Vercel direttamente dalla cache edge, bypassando proxy.ts (il
-// gate di autenticazione). Vedi SETUP.md / commit history per il contesto.
+// Gate esplicito a livello di pagina (non ci si affida solo a proxy.ts):
+// una pagina interamente statica puo' essere servita da Vercel dalla cache
+// edge bypassando il proxy; il controllo qui e' sempre affidabile perche'
+// force-dynamic obbliga ogni richiesta a passare da questo server component.
 export const dynamic = "force-dynamic";
 
-export default function CorpoPage() {
+export default async function CorpoPage() {
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect("/accedi?next=/corpo");
+  }
+
   return <StudioApp />;
 }
