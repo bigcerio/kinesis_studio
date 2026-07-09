@@ -2,18 +2,23 @@
 
 import { useRouter } from "next/navigation";
 import { muscleGroups } from "@/lib/muscleGroups";
-import type { MuscleMeshDef } from "@/lib/muscleMeshLayout";
 import { saveSelection } from "@/lib/selection";
 import { exercisesForGroup } from "@/lib/exercises";
 
+interface SelectableRegion {
+  id: string;
+  groupId: string;
+  side: string;
+}
+
 interface Props {
   selectedIds: string[];
-  meshById: Map<string, MuscleMeshDef>;
+  meshById: Map<string, SelectableRegion>;
   onRemove: (id: string) => void;
   onClear: () => void;
 }
 
-const sideLabel: Record<string, string> = { l: "sx", r: "dx", c: "" };
+const sideLabel: Record<string, string> = { sx: "sx", dx: "dx", c: "" };
 
 export default function SelectionPanel({ selectedIds, meshById, onRemove, onClear }: Props) {
   const router = useRouter();

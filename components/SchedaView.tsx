@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { loadSelection } from "@/lib/selection";
 import { loadAnamnesi, type AnamnesiData } from "@/lib/anamnesi";
-import { buildMuscleMeshes } from "@/lib/muscleMeshLayout";
+import { hotspots2D } from "@/lib/muscleHotspots2D";
 import { muscleGroups } from "@/lib/muscleGroups";
 import { exercisesForGroup, type Exercise } from "@/lib/exercises";
 
@@ -76,7 +76,7 @@ export default function SchedaView({ trial }: { trial: boolean }) {
   const [anamnesi, setAnamnesi] = useState<AnamnesiData | null>(null);
 
   useEffect(() => {
-    const meshById = new Map(buildMuscleMeshes().map((m) => [m.id, m]));
+    const meshById = new Map(hotspots2D.map((h) => [h.id, h]));
     const selection = loadSelection();
     const groups = Array.from(
       new Set(selection.map((id) => meshById.get(id)?.groupId).filter((g): g is string => Boolean(g)))

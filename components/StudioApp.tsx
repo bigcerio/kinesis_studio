@@ -2,37 +2,24 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { signOut } from "next-auth/react";
-import { buildMuscleMeshes } from "@/lib/muscleMeshLayout";
-import { loadAnamnesi } from "@/lib/anamnesi";
+import { hotspots2D } from "@/lib/muscleHotspots2D";
+import { loadAnamnesi, type Sex } from "@/lib/anamnesi";
 import SelectionPanel from "@/components/SelectionPanel";
-import Tooltip3D from "@/components/Tooltip3D";
-import type { HoverInfo, Sex } from "@/components/BodyScene3D";
-
-const BodyScene3D = dynamic(() => import("@/components/BodyScene3D"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center text-sm text-stone-400">
-      Caricamento modello 3D…
-    </div>
-  ),
-});
+import Tooltip2D from "@/components/Tooltip2D";
+import BodyDiagram2D, { type HoverInfo2D } from "@/components/BodyDiagram2D";
 
 export default function StudioApp() {
   const [sex, setSex] = useState<Sex>("F");
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [hover, setHover] = useState<HoverInfo | null>(null);
+  const [hover, setHover] = useState<HoverInfo2D | null>(null);
 
   useEffect(() => {
     const anamnesi = loadAnamnesi();
     if (anamnesi) setSex(anamnesi.sex);
   }, []);
 
-  const meshById = useMemo(() => {
-    const map = new Map(buildMuscleMeshes().map((m) => [m.id, m]));
-    return map;
-  }, []);
+  const meshById = useMemo(() => new Map(hotspots2D.map((h) => [h.id, h])), []);
 
   const toggle = (id: string) => {
     setSelected((prev) => {
@@ -62,7 +49,7 @@ export default function StudioApp() {
             <h1 className="text-base font-semibold tracking-tight text-stone-900 dark:text-stone-100">
               Kinesis Studio
             </h1>
-            <p className="text-xs text-stone-400">Prototipo — mappa corporea 3D interattiva</p>
+            <p className="text-xs text-stone-400">Prototipo — mappa corporea interattiva</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -92,10 +79,7 @@ export default function StudioApp() {
 
       <div className="flex min-h-0 flex-1 flex-col md:flex-row">
         <div className="relative min-h-[45vh] flex-1 md:min-h-0">
-          <BodyScene3D sex={sex} selected={selected} onToggle={toggle} onHover={setHover} />
-          <p className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-white/80 px-3 py-1 text-[11px] text-stone-500 shadow-sm dark:bg-stone-900/80 dark:text-stone-400">
-            Trascina per ruotare · pizzica per zoomare · tocca un distretto per selezionarlo
-          </p>
+          <BodyDiagram2D selected={selected} onToggle={toggle} onHover={setHover} />
         </div>
         <div className="h-[45vh] w-full shrink-0 md:h-auto md:w-[340px]">
           <SelectionPanel
@@ -107,7 +91,7 @@ export default function StudioApp() {
         </div>
       </div>
 
-      <Tooltip3D info={hover} />
+      <Tooltip2D info={hover} />
     </div>
   );
 }
