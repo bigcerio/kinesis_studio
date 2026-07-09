@@ -2,27 +2,17 @@
 
 Guida passo-passo per attivare le funzionalità aggiunte (login, anamnesi salvata, abbonamenti). Tutti questi valori vanno inseriti su **Vercel → progetto kinesis-studio → Settings → Environment Variables** (Production + Preview), poi si fa un redeploy.
 
-## 1. Database Postgres (Supabase)
+## 1. Database Postgres (Supabase) — ✅ già fatto
 
-1. Vai su [supabase.com](https://supabase.com) → crea account gratuito → **New Project**.
-2. Scegli nome progetto, password del database (salvala), regione vicina (es. Frankfurt/EU).
-3. Attendi il provisioning (~2 minuti).
-4. Vai su **Project Settings → Database → Connection string → URI**, modalità **Transaction** (porta 6543, per compatibilità serverless).
-5. Copia la stringa, sostituisci `[YOUR-PASSWORD]` con la password scelta al punto 2.
-6. Su Vercel, imposta:
-   - `DATABASE_URL` = la stringa copiata
+Progetto Supabase "kinesis-studio" creato nell'org "mc", schema applicato (`npx prisma migrate dev --name init`), Row Level Security abilitata su tutte le tabelle (User, Account, Session, VerificationToken, Subscription, AnamnesiRecord — la nostra app le raggiunge comunque perché Prisma si connette direttamente a Postgres, RLS blocca solo l'accesso via API REST pubblica di Supabase che non usiamo).
 
-Alternativa equivalente: [neon.com](https://neon.com) (stesso procedimento, connection string già pronta all'uso).
+Servono **due** variabili (valori reali consegnati a parte in chat, non nel repo per non esporre la password):
+- `DATABASE_URL` = connessione **pooled** (porta 6543, `pgbouncer=true`) — usata a runtime dall'app
+- `DIRECT_URL` = connessione **diretta** (porta 5432) — usata da Prisma Migrate/CLI
 
-### Applicare lo schema al database
+Entrambe vanno su Vercel → Settings → Environment Variables.
 
-Dopo aver impostato `DATABASE_URL` anche in un file locale `.env` (non committato), da terminale nel progetto:
-
-```
-npx prisma migrate dev --name init
-```
-
-Questo crea le tabelle (User, Account, Session, Subscription, AnamnesiRecord, ecc.) sul database reale.
+Se in futuro serve un secondo ambiente (es. staging) o si vuole cambiare provider: [neon.com](https://neon.com) funziona in modo equivalente.
 
 ## 2. AUTH_SECRET (obbligatorio)
 
@@ -71,7 +61,8 @@ Dopo aver impostato le variabili su Vercel, vai su **Deployments → ⋯ sull'ul
 
 ## Checklist rapida
 
-- [ ] `DATABASE_URL` impostata + `npx prisma migrate dev` eseguito
+- [x] Database Supabase creato, schema migrato, RLS abilitata
+- [ ] `DATABASE_URL` + `DIRECT_URL` impostate su Vercel (valori consegnati in chat)
 - [ ] `AUTH_SECRET` + `NEXTAUTH_URL` impostate
 - [ ] Google OAuth configurato (opzionale)
 - [ ] 3 prodotti Stripe creati, price ID copiati
