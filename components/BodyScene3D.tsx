@@ -117,8 +117,8 @@ function MusclePad({
     onToggle(d.id);
   };
 
-  const opacity = isSelected ? 0.92 : hovering ? 0.55 : 0.14;
-  const color = isSelected ? "#b5482e" : hovering ? "#a17a5c" : "#8f6a52";
+  const opacity = isSelected ? 0.9 : hovering ? 0.5 : 0.14;
+  const color = isSelected ? "#059669" : hovering ? "#6ea88f" : "#8f6a52";
 
   return (
     <RoundedBox
@@ -135,7 +135,7 @@ function MusclePad({
         color={color}
         transparent
         opacity={opacity}
-        emissive={isSelected ? "#7a2f1c" : "#000000"}
+        emissive={isSelected ? "#065f46" : "#000000"}
         emissiveIntensity={isSelected ? 0.2 : 0}
         roughness={0.5}
       />

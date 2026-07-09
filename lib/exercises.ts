@@ -11,9 +11,26 @@ export interface Exercise {
   videoThumbnail: string;
 }
 
+function itVideoSearch(query: string): string {
+  // hl/gl polarizzano i risultati di ricerca YouTube verso l'italiano.
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}&hl=it&gl=IT`;
+}
+
 // Contenuto placeholder in attesa di validazione clinica del professionista.
 // Struttura pronta per essere sostituita/estesa da un pannello admin.
 export const exercises: Exercise[] = [
+  {
+    id: "ex_deltoid_anterior_raise",
+    groupId: "deltoid_anterior",
+    name: "Alzate frontali con manubri",
+    category: "rinforzo",
+    description: "Rinforza il capo anteriore del deltoide, coinvolto nella flessione di spalla.",
+    execution: "In piedi, manubri lungo i fianchi, solleva un braccio alla volta fino all'altezza della spalla mantenendo il gomito quasi esteso. Controlla la discesa.",
+    sets: "3 x 10-12 ripetizioni per lato",
+    contraindications: ["Conflitto subacromiale in fase acuta"],
+    videoUrl: itVideoSearch("alzate frontali manubri esecuzione corretta"),
+    videoThumbnail: "",
+  },
   {
     id: "ex_pectoralis_stretch",
     groupId: "pectoralis_major",
@@ -23,7 +40,7 @@ export const exercises: Exercise[] = [
     execution: "Avambraccio a 90° contro lo stipite, ruota il tronco dal lato opposto finché senti tensione non dolorosa. Mantieni la respirazione fluida.",
     sets: "3 x 30\" per lato",
     contraindications: ["Lussazione di spalla recente"],
-    videoUrl: "https://www.youtube.com/results?search_query=stretching+grande+pettorale",
+    videoUrl: itVideoSearch("stretching grande pettorale al muro"),
     videoThumbnail: "",
   },
   {
@@ -35,7 +52,19 @@ export const exercises: Exercise[] = [
     execution: "In piedi, elastico sotto i piedi, fletti il gomito mantenendo il busto stabile. Controlla la fase eccentrica.",
     sets: "3 x 12-15 ripetizioni",
     contraindications: ["Epicondilite acuta"],
-    videoUrl: "https://www.youtube.com/results?search_query=curl+bicipiti+elastico",
+    videoUrl: itVideoSearch("curl bicipiti con elastico esecuzione"),
+    videoThumbnail: "",
+  },
+  {
+    id: "ex_forearm_flexors_stretch",
+    groupId: "forearm_flexors",
+    name: "Stretching flessori del polso",
+    category: "stretching",
+    description: "Allunga i flessori dell'avambraccio, utile in caso di sovraccarico da gesti ripetitivi (es. lavoro al pc, sollevamento pesi).",
+    execution: "Braccio disteso avanti, palmo verso l'alto, con l'altra mano tira delicatamente le dita verso il basso finché senti tensione nell'avambraccio.",
+    sets: "3 x 20-30\" per lato",
+    contraindications: ["Tunnel carpale in fase acuta"],
+    videoUrl: itVideoSearch("stretching flessori avambraccio polso"),
     videoThumbnail: "",
   },
   {
@@ -47,7 +76,19 @@ export const exercises: Exercise[] = [
     execution: "Supino, ginocchia a 90°, braccia verso il soffitto. Estendi lentamente braccio e gamba opposti mantenendo la zona lombare a contatto col suolo.",
     sets: "3 x 8 ripetizioni per lato",
     contraindications: [],
-    videoUrl: "https://www.youtube.com/results?search_query=dead+bug+exercise",
+    videoUrl: itVideoSearch("dead bug esercizio core esecuzione"),
+    videoThumbnail: "",
+  },
+  {
+    id: "ex_obliques_side_plank",
+    groupId: "obliques",
+    name: "Plank laterale",
+    category: "rinforzo",
+    description: "Rinforza gli obliqui addominali migliorando la stabilità del tronco nei movimenti di rotazione e flessione laterale.",
+    execution: "Appoggio su avambraccio e lato del piede, corpo allineato dalla testa ai talloni, bacino sollevato senza cedimenti.",
+    sets: "3 x 20-30\" per lato",
+    contraindications: ["Instabilità di spalla"],
+    videoUrl: itVideoSearch("plank laterale esecuzione corretta obliqui"),
     videoThumbnail: "",
   },
   {
@@ -59,7 +100,19 @@ export const exercises: Exercise[] = [
     execution: "Affondo con ginocchio posteriore a terra, spingi il bacino in avanti mantenendo il busto verticale.",
     sets: "3 x 30\" per lato",
     contraindications: ["Ernia inguinale"],
-    videoUrl: "https://www.youtube.com/results?search_query=stretching+ileopsoas+affondo",
+    videoUrl: itVideoSearch("stretching ileopsoas affondo esecuzione"),
+    videoThumbnail: "",
+  },
+  {
+    id: "ex_adductors_stretch",
+    groupId: "adductors",
+    name: "Stretching adduttori a farfalla",
+    category: "stretching",
+    description: "Allunga gli adduttori della coscia, utile per mobilità dell'anca e prevenzione di sovraccarichi inguinali.",
+    execution: "Seduto, piante dei piedi unite, ginocchia verso l'esterno, inclina il busto in avanti mantenendo la schiena lunga.",
+    sets: "3 x 30\" ",
+    contraindications: ["Pubalgia in fase acuta"],
+    videoUrl: itVideoSearch("stretching adduttori farfalla esecuzione"),
     videoThumbnail: "",
   },
   {
@@ -71,7 +124,7 @@ export const exercises: Exercise[] = [
     execution: "Sedia dietro di te, scendi controllando il movimento fino a sfiorare la seduta, poi risali senza slancio.",
     sets: "3 x 10-12 ripetizioni",
     contraindications: ["Condropatia femoro-rotulea in fase acuta"],
-    videoUrl: "https://www.youtube.com/results?search_query=squat+su+sedia+riabilitazione",
+    videoUrl: itVideoSearch("squat su sedia riabilitazione esecuzione"),
     videoThumbnail: "",
   },
   {
@@ -83,7 +136,7 @@ export const exercises: Exercise[] = [
     execution: "In piedi, schiena a un muro, solleva solo le punte dei piedi mantenendo i talloni a terra.",
     sets: "3 x 15 ripetizioni",
     contraindications: [],
-    videoUrl: "https://www.youtube.com/results?search_query=tibialis+raise",
+    videoUrl: itVideoSearch("tibialis raise esecuzione tibiale anteriore"),
     videoThumbnail: "",
   },
   {
@@ -95,7 +148,43 @@ export const exercises: Exercise[] = [
     execution: "Inclina il capo lateralmente, mano omolaterale sopra l'orecchio applica una leggera trazione, senza forzare.",
     sets: "3 x 20\" per lato",
     contraindications: ["Cervicalgia acuta con irradiazione"],
-    videoUrl: "https://www.youtube.com/results?search_query=mobilizzazione+trapezio+superiore",
+    videoUrl: itVideoSearch("mobilizzazione trapezio superiore stretching collo"),
+    videoThumbnail: "",
+  },
+  {
+    id: "ex_deltoid_posterior_flye",
+    groupId: "deltoid_posterior",
+    name: "Aperture posteriori con elastico",
+    category: "rinforzo",
+    description: "Rinforza il deltoide posteriore, spesso debole rispetto al capo anteriore, migliorando l'equilibrio della cintura scapolare.",
+    execution: "Elastico ancorato davanti a te, braccia tese, apri lateralmente portando le scapole verso la colonna.",
+    sets: "3 x 12-15 ripetizioni",
+    contraindications: [],
+    videoUrl: itVideoSearch("aperture posteriori elastico deltoide posteriore"),
+    videoThumbnail: "",
+  },
+  {
+    id: "ex_triceps_dip",
+    groupId: "triceps_brachii",
+    name: "Dip su sedia",
+    category: "rinforzo",
+    description: "Rinforza il tricipite brachiale a corpo libero, con possibilità di regolare il carico piegando le ginocchia.",
+    execution: "Mani sul bordo di una sedia, gambe distese o flesse, scendi piegando i gomiti mantenendoli vicini al corpo, poi risali.",
+    sets: "3 x 8-12 ripetizioni",
+    contraindications: ["Instabilità di spalla o gomito"],
+    videoUrl: itVideoSearch("dip su sedia tricipiti esecuzione"),
+    videoThumbnail: "",
+  },
+  {
+    id: "ex_forearm_extensors_stretch",
+    groupId: "forearm_extensors",
+    name: "Stretching estensori del polso",
+    category: "stretching",
+    description: "Allunga gli estensori dell'avambraccio, indicato in caso di epicondilite o sovraccarico da uso prolungato del mouse/tastiera.",
+    execution: "Braccio disteso avanti, palmo verso il basso, con l'altra mano flette il polso verso il basso finché senti tensione.",
+    sets: "3 x 20-30\" per lato",
+    contraindications: ["Epicondilite in fase acuta con dolore forte"],
+    videoUrl: itVideoSearch("stretching estensori avambraccio epicondilite"),
     videoThumbnail: "",
   },
   {
@@ -107,7 +196,7 @@ export const exercises: Exercise[] = [
     execution: "Elastico ancorato in alto, tira verso il basso portando i gomiti lungo il busto, controlla il ritorno.",
     sets: "3 x 12 ripetizioni",
     contraindications: ["Conflitto subacromiale acuto"],
-    videoUrl: "https://www.youtube.com/results?search_query=lat+pulldown+elastico",
+    videoUrl: itVideoSearch("lat pulldown elastico gran dorsale esecuzione"),
     videoThumbnail: "",
   },
   {
@@ -119,7 +208,7 @@ export const exercises: Exercise[] = [
     execution: "Carponi, estendi braccio e gamba opposti mantenendo il bacino stabile e la colonna neutra.",
     sets: "3 x 8 ripetizioni per lato",
     contraindications: ["Fase acuta di lombalgia con dolore irradiato"],
-    videoUrl: "https://www.youtube.com/results?search_query=bird+dog+exercise+lombalgia",
+    videoUrl: itVideoSearch("bird dog esercizio lombalgia esecuzione"),
     videoThumbnail: "",
   },
   {
@@ -131,7 +220,7 @@ export const exercises: Exercise[] = [
     execution: "Supino, ginocchia flesse, solleva il bacino contraendo i glutei senza inarcare eccessivamente la lombare.",
     sets: "3 x 15 ripetizioni",
     contraindications: [],
-    videoUrl: "https://www.youtube.com/results?search_query=glute+bridge+esecuzione",
+    videoUrl: itVideoSearch("ponte gluteo glute bridge esecuzione"),
     videoThumbnail: "",
   },
   {
@@ -143,7 +232,7 @@ export const exercises: Exercise[] = [
     execution: "Supino, elastico intorno all'avampiede, estendi il ginocchio portando la gamba verso l'alto mantenendo la lombare a contatto col suolo.",
     sets: "3 x 30\" per lato",
     contraindications: ["Sciatalgia acuta"],
-    videoUrl: "https://www.youtube.com/results?search_query=stretching+ischiocrurali+elastico",
+    videoUrl: itVideoSearch("stretching ischiocrurali supino elastico"),
     videoThumbnail: "",
   },
   {
@@ -155,7 +244,19 @@ export const exercises: Exercise[] = [
     execution: "Avampiede su un gradino, lascia scendere il tallone sotto il livello del gradino con ginocchio esteso.",
     sets: "3 x 30\" per lato",
     contraindications: ["Tendinopatia achillea in fase acuta"],
-    videoUrl: "https://www.youtube.com/results?search_query=stretching+polpaccio+gradino",
+    videoUrl: itVideoSearch("stretching polpaccio gradino gastrocnemio"),
+    videoThumbnail: "",
+  },
+  {
+    id: "ex_soleus_raise",
+    groupId: "soleus",
+    name: "Calf raise a ginocchia flesse",
+    category: "rinforzo",
+    description: "Isola il soleo rispetto al gastrocnemio grazie al ginocchio flesso, utile per stabilità di caviglia e postura.",
+    execution: "In piedi, ginocchia leggermente flesse, solleva i talloni contraendo il polpaccio, scendi con controllo.",
+    sets: "3 x 15-20 ripetizioni",
+    contraindications: [],
+    videoUrl: itVideoSearch("calf raise ginocchia flesse soleo esecuzione"),
     videoThumbnail: "",
   },
 ];

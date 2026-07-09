@@ -56,7 +56,7 @@ export default function SchedaPage() {
         <p className="text-sm text-stone-500">Nessun distretto selezionato per la scheda.</p>
         <Link
           href="/corpo"
-          className="rounded-full bg-stone-900 px-5 py-2.5 text-sm font-medium text-white dark:bg-stone-100 dark:text-stone-900"
+          className="rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white dark:bg-emerald-500 dark:text-emerald-950"
         >
           Torna alla mappa corporea
         </Link>
@@ -77,7 +77,7 @@ export default function SchedaPage() {
         </div>
         <button
           onClick={() => window.print()}
-          className="rounded-full bg-stone-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+          className="rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700 dark:bg-emerald-500 dark:text-emerald-950 dark:hover:bg-emerald-400"
         >
           Esporta / Stampa PDF
         </button>
@@ -95,7 +95,7 @@ export default function SchedaPage() {
         </div>
 
         {hasContraindications && (
-          <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+          <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
             <strong>Attenzione:</strong> in anamnesi risultano controindicazioni (
             {anamnesi!.controindicazioni.filter((c) => c !== "Nessuna").join(", ")}). Verificare ogni
             esercizio con il professionista prima dell&apos;esecuzione.
@@ -117,7 +117,7 @@ export default function SchedaPage() {
                   {exercises.map((ex) => (
                     <article
                       key={ex.id}
-                      className="flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900"
+                      className="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900"
                     >
                       <a
                         href={ex.videoUrl}

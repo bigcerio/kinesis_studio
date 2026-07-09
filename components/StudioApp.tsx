@@ -71,7 +71,7 @@ export default function StudioApp() {
               onClick={() => setSex(s)}
               className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
                 sex === s
-                  ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
+                  ? "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950"
                   : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
               }`}
             >

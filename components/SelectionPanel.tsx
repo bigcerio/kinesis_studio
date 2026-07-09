@@ -56,7 +56,7 @@ export default function SelectionPanel({ selectedIds, meshById, onRemove, onClea
               return (
                 <li
                   key={id}
-                  className="rounded-lg border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-900"
+                  className="rounded-2xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-900"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
@@ -81,7 +81,7 @@ export default function SelectionPanel({ selectedIds, meshById, onRemove, onClea
                     </button>
                   </div>
 
-                  <div className="mt-2 flex items-center gap-2 rounded-md border border-stone-200 bg-white px-2 py-1.5 text-xs text-stone-500 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-400">
+                  <div className="mt-2 flex items-center gap-2 rounded-xl border border-stone-200 bg-white px-2 py-1.5 text-xs text-stone-500 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-400">
                     <span className="inline-block h-4 w-4 shrink-0 rounded-sm bg-emerald-100 dark:bg-emerald-900" />
                     <span>
                       {exerciseCount} esercizi{exerciseCount === 1 ? "o" : ""} con video di esecuzione
@@ -98,7 +98,7 @@ export default function SelectionPanel({ selectedIds, meshById, onRemove, onClea
         <button
           disabled={selectedIds.length === 0}
           onClick={handleGenerate}
-          className="w-full rounded-lg bg-stone-900 py-2.5 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:bg-stone-200 disabled:text-stone-400 dark:bg-stone-100 dark:text-stone-900 dark:disabled:bg-stone-800 dark:disabled:text-stone-600"
+          className="w-full rounded-2xl bg-emerald-600 py-2.5 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:bg-stone-200 disabled:text-stone-400 dark:bg-emerald-500 dark:text-emerald-950 dark:disabled:bg-stone-800 dark:disabled:text-stone-600"
         >
           Genera scheda
         </button>

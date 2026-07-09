@@ -13,7 +13,7 @@ import {
 
 function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-950">
+    <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-950">
       <h2 className="text-sm font-semibold text-stone-900 dark:text-stone-100">{title}</h2>
       {hint && <p className="mt-0.5 text-xs text-stone-400">{hint}</p>}
       <div className="mt-4 flex flex-col gap-4">{children}</div>
@@ -31,7 +31,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 const inputClass =
-  "rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-400 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100";
+  "rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100";
 
 function toggleInArray(list: string[], value: string): string[] {
   return list.includes(value) ? list.filter((v) => v !== value) : [...list, value];
@@ -64,15 +64,15 @@ export default function AnamnesiForm() {
       <Section title="Dati generali">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <Field label="Sesso">
-            <div className="flex gap-1 rounded-lg border border-stone-200 p-1 dark:border-stone-800">
+            <div className="flex gap-1 rounded-2xl border border-stone-200 p-1 dark:border-stone-800">
               {(["F", "M"] as Sex[]).map((s) => (
                 <button
                   type="button"
                   key={s}
                   onClick={() => update("sex", s)}
-                  className={`flex-1 rounded-md py-1.5 text-xs font-medium transition-colors ${
+                  className={`flex-1 rounded-xl py-1.5 text-xs font-medium transition-colors ${
                     data.sex === s
-                      ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
+                      ? "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950"
                       : "text-stone-500"
                   }`}
                 >
@@ -120,7 +120,7 @@ export default function AnamnesiForm() {
               onClick={() => update("obiettivi", toggleInArray(data.obiettivi, opt))}
               className={`rounded-full border px-3 py-1.5 text-xs transition-colors ${
                 data.obiettivi.includes(opt)
-                  ? "border-stone-900 bg-stone-900 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
+                  ? "border-emerald-600 bg-emerald-600 text-white dark:border-emerald-500 dark:bg-emerald-500 dark:text-emerald-950"
                   : "border-stone-200 text-stone-600 hover:border-stone-400 dark:border-stone-800 dark:text-stone-300"
               }`}
             >
@@ -316,7 +316,7 @@ export default function AnamnesiForm() {
 
       <button
         type="submit"
-        className="mt-2 w-full rounded-lg bg-stone-900 py-3 text-sm font-medium text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+        className="mt-2 w-full rounded-2xl bg-emerald-600 py-3 text-sm font-medium text-white transition-colors hover:bg-emerald-700 dark:bg-emerald-500 dark:text-emerald-950 dark:hover:bg-emerald-400"
       >
         Continua alla mappa corporea
       </button>

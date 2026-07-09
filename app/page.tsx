@@ -40,7 +40,7 @@ export default function Home() {
         </p>
         <Link
           href="/anamnesi"
-          className="mt-8 rounded-full bg-stone-900 px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+          className="mt-8 rounded-full bg-emerald-600 px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-emerald-700 dark:bg-emerald-500 dark:text-emerald-950 dark:hover:bg-emerald-400"
         >
           Inizia la tua valutazione
         </Link>
@@ -49,7 +49,7 @@ export default function Home() {
           {steps.map((s) => (
             <div
               key={s.n}
-              className="rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-950"
+              className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-950"
             >
               <span className="text-xs font-medium text-stone-400">{s.n}</span>
               <h2 className="mt-2 text-sm font-semibold text-stone-900 dark:text-stone-100">
