@@ -1,8 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { buildMuscleMeshes } from "@/lib/muscleMeshLayout";
+import { loadAnamnesi } from "@/lib/anamnesi";
 import SelectionPanel from "@/components/SelectionPanel";
 import Tooltip3D from "@/components/Tooltip3D";
 import type { HoverInfo, Sex } from "@/components/BodyScene3D";
@@ -20,6 +22,11 @@ export default function StudioApp() {
   const [sex, setSex] = useState<Sex>("F");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [hover, setHover] = useState<HoverInfo | null>(null);
+
+  useEffect(() => {
+    const anamnesi = loadAnamnesi();
+    if (anamnesi) setSex(anamnesi.sex);
+  }, []);
 
   const meshById = useMemo(() => {
     const map = new Map(buildMuscleMeshes().map((m) => [m.id, m]));
@@ -46,11 +53,16 @@ export default function StudioApp() {
   return (
     <div className="flex h-dvh w-full flex-col bg-stone-50 dark:bg-stone-950">
       <header className="flex items-center justify-between border-b border-stone-200 px-5 py-3 dark:border-stone-800">
-        <div>
-          <h1 className="text-base font-semibold tracking-tight text-stone-900 dark:text-stone-100">
-            Kinesis Studio
-          </h1>
-          <p className="text-xs text-stone-400">Prototipo — mappa corporea 3D interattiva</p>
+        <div className="flex items-center gap-3">
+          <Link href="/anamnesi" className="text-xs text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
+            ← Anamnesi
+          </Link>
+          <div>
+            <h1 className="text-base font-semibold tracking-tight text-stone-900 dark:text-stone-100">
+              Kinesis Studio
+            </h1>
+            <p className="text-xs text-stone-400">Prototipo — mappa corporea 3D interattiva</p>
+          </div>
         </div>
         <div className="flex items-center gap-1 rounded-full border border-stone-200 p-1 dark:border-stone-800">
           {(["F", "M"] as Sex[]).map((s) => (
