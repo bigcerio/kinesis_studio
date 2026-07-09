@@ -1,21 +1,20 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const steps = [
   {
     n: "01",
     title: "Anamnesi",
-    text: "Storia clinica, dolore attuale, obiettivi e controindicazioni raccolti in modo strutturato.",
+    text: "Storia clinica, dolore attuale, obiettivi. Niente questionari generici.",
   },
   {
     n: "02",
     title: "Mappa corporea",
-    text: "Corpo interattivo, fronte e retro: esplora e seleziona i distretti muscolari coinvolti.",
+    text: "Fronte e retro, corpo intero. Tocchi il distretto, non lo cerchi in un elenco.",
   },
   {
     n: "03",
-    title: "Scheda personalizzata",
-    text: "Esercizi con basi scientifiche e collegamenti all'esecuzione, pronti da esportare in PDF.",
+    title: "Scheda pronta",
+    text: "Esercizi con basi scientifiche, video di esecuzione, export PDF.",
   },
 ];
 
@@ -62,26 +61,32 @@ export default function Home() {
               className="mt-4 text-3xl font-semibold tracking-tight text-stone-900 opacity-0 sm:text-4xl"
               style={{ animation: "fade-up 0.6s ease-out 0.18s forwards" }}
             >
-              Schede di allenamento e recupero costruite sul tuo corpo.
+              La tua scheda. Costruita sul tuo corpo, non su un modello.
             </h1>
 
             <p
               className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-stone-500 opacity-0 md:mx-0"
               style={{ animation: "fade-up 0.6s ease-out 0.28s forwards" }}
             >
-              Nessuna teoria generica. Anamnesi approfondita, selezione anatomica precisa,
-              esercizi con basi scientifiche — stretching, allenamento funzionale, recupero.
+              Anamnesi vera. Distretto muscolare esatto. Esercizio con basi scientifiche.
+              Zero teoria generica, zero fuffa.
             </p>
 
             <div
-              className="mt-8 opacity-0"
+              className="mt-8 flex flex-wrap items-center gap-3 opacity-0"
               style={{ animation: "fade-up 0.6s ease-out 0.38s forwards" }}
             >
               <Link
                 href="/anamnesi"
                 className="inline-block rounded-full bg-emerald-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md"
               >
-                Inizia la tua valutazione
+                Inizia ora
+              </Link>
+              <Link
+                href="/abbonamento"
+                className="inline-block rounded-full px-5 py-3 text-sm font-medium text-stone-600 transition-colors hover:text-stone-900"
+              >
+                Vedi i piani →
               </Link>
             </div>
           </div>
@@ -127,20 +132,23 @@ export default function Home() {
           style={{ animation: "fade-up 0.6s ease-out 0.4s forwards" }}
         >
           <div className="relative isolate flex min-h-[280px] items-center overflow-hidden rounded-3xl sm:min-h-[340px]">
-            <Image
-              src="/hero-recovery.webp"
-              alt="Sessione di recupero funzionale e fisioterapia"
-              fill
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              className="-z-10 object-cover object-center"
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/hero-recovery.webp"
+              className="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+            >
+              <source src="/hero-recovery.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-stone-900/80 via-stone-900/35 to-stone-900/10" />
             <div className="px-6 py-10 sm:px-10">
               <p className="max-w-md text-lg font-medium leading-snug text-white sm:text-xl">
-                Recupero funzionale guidato, con lo stesso rigore di uno studio clinico.
+                Stesso rigore di uno studio clinico. Zero compromessi sul metodo.
               </p>
               <p className="mt-2 max-w-sm text-xs text-white/70">
-                Ogni scheda nasce da un'anamnesi vera, non da un algoritmo generico.
+                Ogni scheda nasce da un&apos;anamnesi vera, non da un algoritmo generico.
               </p>
             </div>
           </div>
@@ -169,7 +177,7 @@ export default function Home() {
       </main>
 
       <footer className="px-6 py-5 text-center text-[11px] text-stone-400">
-        Prototipo frontend · abbonamenti, autenticazione e database in fase successiva
+        © {new Date().getFullYear()} Kinesis Studio
       </footer>
     </div>
   );
