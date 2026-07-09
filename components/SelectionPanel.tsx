@@ -1,7 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { muscleGroups } from "@/lib/muscleGroups";
 import type { MuscleMeshDef } from "@/lib/muscleMeshLayout";
+import { saveSelection } from "@/lib/selection";
+import { exercisesForGroup } from "@/lib/exercises";
 
 interface Props {
   selectedIds: string[];
@@ -13,6 +16,13 @@ interface Props {
 const sideLabel: Record<string, string> = { l: "sx", r: "dx", c: "" };
 
 export default function SelectionPanel({ selectedIds, meshById, onRemove, onClear }: Props) {
+  const router = useRouter();
+
+  const handleGenerate = () => {
+    saveSelection(selectedIds);
+    router.push("/scheda");
+  };
+
   return (
     <aside className="flex h-full w-full flex-col border-l border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-950">
       <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4 dark:border-stone-800">
@@ -42,6 +52,7 @@ export default function SelectionPanel({ selectedIds, meshById, onRemove, onClea
               const mesh = meshById.get(id);
               if (!mesh) return null;
               const group = muscleGroups[mesh.groupId];
+              const exerciseCount = exercisesForGroup(mesh.groupId).length;
               return (
                 <li
                   key={id}
@@ -70,9 +81,11 @@ export default function SelectionPanel({ selectedIds, meshById, onRemove, onClea
                     </button>
                   </div>
 
-                  <div className="mt-2 flex items-center gap-2 rounded-md border border-dashed border-stone-300 px-2 py-1.5 text-xs text-stone-400 dark:border-stone-700">
-                    <span className="inline-block h-4 w-4 shrink-0 rounded-sm bg-stone-200 dark:bg-stone-700" />
-                    <span>Esecuzione video — collegata in fase contenuti</span>
+                  <div className="mt-2 flex items-center gap-2 rounded-md border border-stone-200 bg-white px-2 py-1.5 text-xs text-stone-500 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-400">
+                    <span className="inline-block h-4 w-4 shrink-0 rounded-sm bg-emerald-100 dark:bg-emerald-900" />
+                    <span>
+                      {exerciseCount} esercizi{exerciseCount === 1 ? "o" : ""} con video di esecuzione
+                    </span>
                   </div>
                 </li>
               );
@@ -84,10 +97,10 @@ export default function SelectionPanel({ selectedIds, meshById, onRemove, onClea
       <div className="border-t border-stone-200 px-5 py-4 dark:border-stone-800">
         <button
           disabled={selectedIds.length === 0}
-          title="Disponibile quando colleghiamo anamnesi e database esercizi"
+          onClick={handleGenerate}
           className="w-full rounded-lg bg-stone-900 py-2.5 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:bg-stone-200 disabled:text-stone-400 dark:bg-stone-100 dark:text-stone-900 dark:disabled:bg-stone-800 dark:disabled:text-stone-600"
         >
-          Genera scheda PDF
+          Genera scheda
         </button>
         <p className="mt-2 text-center text-[11px] text-stone-400">
           {selectedIds.length} distrett{selectedIds.length === 1 ? "o" : "i"} selezionat
