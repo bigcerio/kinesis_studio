@@ -21,7 +21,7 @@ const tiers = [
   {
     id: "semiannual",
     label: "6 mesi",
-    price: "69,99 €",
+    price: "79,99 €",
     period: "/6 mesi",
     note: "invece di 89,99 €",
     highlighted: true,
