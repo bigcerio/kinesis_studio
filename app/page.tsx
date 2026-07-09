@@ -87,21 +87,37 @@ export default function Home() {
           </div>
 
           <div
-            className="relative mx-auto h-[320px] w-[230px] opacity-0 sm:h-[400px] sm:w-[290px]"
+            className="relative mx-auto w-full max-w-xs opacity-0"
             style={{ animation: "fade-in 0.8s ease-out 0.3s forwards" }}
           >
             <div
-              className="relative h-full w-full"
+              className="rounded-3xl border border-stone-200 bg-white/80 p-7 shadow-xl backdrop-blur-sm"
               style={{ animation: "float-slow 6s ease-in-out infinite" }}
             >
-              <Image
-                src="/body/front.webp"
-                alt="Corpo umano, mappa muscolare anteriore"
-                fill
-                priority
-                sizes="(max-width: 640px) 230px, 290px"
-                className="object-contain drop-shadow-xl"
-              />
+              <div className="flex items-center gap-2 text-emerald-600">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path
+                    d="M2 12h4l2-7 4 14 3-9 2 5h5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className="text-xs font-medium">Metodo clinico</span>
+              </div>
+
+              <p className="mt-5 text-3xl font-semibold tracking-tight text-stone-900">20</p>
+              <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                distretti muscolari mappati con precisione anatomica
+              </p>
+
+              <div className="my-5 h-px bg-stone-100" />
+
+              <p className="text-3xl font-semibold tracking-tight text-stone-900">100%</p>
+              <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                costruita su un&apos;anamnesi reale, non su un algoritmo generico
+              </p>
             </div>
           </div>
         </section>

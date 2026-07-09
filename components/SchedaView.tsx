@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import QRCode from "react-qr-code";
 import { loadSelection } from "@/lib/selection";
 import { loadAnamnesi, type AnamnesiData } from "@/lib/anamnesi";
 import { hotspots2D } from "@/lib/muscleHotspots2D";
@@ -253,6 +254,22 @@ export default function SchedaView({ trial }: { trial: boolean }) {
                           <p className="text-[11px] text-red-600 dark:text-red-400">
                             Evitare se: {ex.contraindications.join(", ")}
                           </p>
+                        )}
+                        {ex.videoSource === "youtube" && ex.videoId && (
+                          <div className="mt-1 flex items-center gap-2 border-t border-stone-100 pt-2 dark:border-stone-800">
+                            <div className="shrink-0 rounded-md bg-white p-1">
+                              <QRCode
+                                value={`https://www.youtube.com/watch?v=${ex.videoId}`}
+                                size={44}
+                                style={{ height: "44px", width: "44px" }}
+                              />
+                            </div>
+                            <p className="text-[10px] leading-tight text-stone-400">
+                              Inquadra il QR per guardare
+                              <br />
+                              l&apos;esecuzione su YouTube
+                            </p>
+                          </div>
                         )}
                       </div>
                     </article>
