@@ -25,9 +25,17 @@ export default function Home() {
         <span className="text-sm font-semibold tracking-tight text-stone-900 dark:text-stone-100">
           Kinesis Studio
         </span>
-        <span className="rounded-full border border-stone-200 px-3 py-1 text-[11px] text-stone-400 dark:border-stone-800">
-          accesso riservato agli abbonati — prototipo
-        </span>
+        <div className="flex items-center gap-3 text-xs">
+          <Link href="/accedi" className="text-stone-500 hover:text-stone-800">
+            Accedi
+          </Link>
+          <Link
+            href="/registrati"
+            className="rounded-full bg-stone-900 px-3.5 py-1.5 font-medium text-white hover:bg-stone-800"
+          >
+            Registrati
+          </Link>
+        </div>
       </header>
 
       <main className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center">

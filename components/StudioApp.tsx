@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { signOut } from "next-auth/react";
 import { buildMuscleMeshes } from "@/lib/muscleMeshLayout";
 import { loadAnamnesi } from "@/lib/anamnesi";
 import SelectionPanel from "@/components/SelectionPanel";
@@ -64,20 +65,28 @@ export default function StudioApp() {
             <p className="text-xs text-stone-400">Prototipo — mappa corporea 3D interattiva</p>
           </div>
         </div>
-        <div className="flex items-center gap-1 rounded-full border border-stone-200 p-1 dark:border-stone-800">
-          {(["F", "M"] as Sex[]).map((s) => (
-            <button
-              key={s}
-              onClick={() => setSex(s)}
-              className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
-                sex === s
-                  ? "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950"
-                  : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
-              }`}
-            >
-              {s === "F" ? "Donna" : "Uomo"}
-            </button>
-          ))}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 rounded-full border border-stone-200 p-1 dark:border-stone-800">
+            {(["F", "M"] as Sex[]).map((s) => (
+              <button
+                key={s}
+                onClick={() => setSex(s)}
+                className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
+                  sex === s
+                    ? "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950"
+                    : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
+                }`}
+              >
+                {s === "F" ? "Donna" : "Uomo"}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => signOut({ callbackUrl: "/" })}
+            className="text-xs text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
+          >
+            Esci
+          </button>
         </div>
       </header>
 
