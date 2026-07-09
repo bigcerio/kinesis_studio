@@ -62,3 +62,11 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Pattern a puntini molto sottile per le sezioni interne, alternativa allo
+   sfondo bianco piatto. Usare su contenitori, mai direttamente sul testo. */
+.bg-dot-pattern {
+  background-color: #fafaf9;
+  background-image: radial-gradient(circle, #05966922 1px, transparent 1px);
+  background-size: 22px 22px;
+}

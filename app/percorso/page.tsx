@@ -18,7 +18,7 @@ export default async function PercorsoPage() {
   });
 
   return (
-    <div className="min-h-dvh bg-stone-50">
+    <div className="bg-dot-pattern min-h-dvh">
       <header className="flex items-center justify-between border-b border-stone-200 px-5 py-3">
         <div className="flex items-center gap-3">
           <Link href="/corpo" className="text-xs text-stone-400 hover:text-stone-700">

@@ -6,7 +6,8 @@ import { loadSelection } from "@/lib/selection";
 import { loadAnamnesi, type AnamnesiData } from "@/lib/anamnesi";
 import { hotspots2D } from "@/lib/muscleHotspots2D";
 import { muscleGroups } from "@/lib/muscleGroups";
-import { exercisesForGroup, type Exercise } from "@/lib/exercises";
+import { exercisesForGroup, buildRoutine, phaseLabel, type Exercise } from "@/lib/exercises";
+import { LIABILITY_DISCLAIMER } from "@/lib/legal";
 
 const categoryLabel: Record<Exercise["category"], string> = {
   stretching: "Stretching",
@@ -104,6 +105,8 @@ export default function SchedaView({ trial }: { trial: boolean }) {
     [groupIds]
   );
 
+  const routine = useMemo(() => buildRoutine(groupIds), [groupIds]);
+
   const hasContraindications =
     anamnesi && anamnesi.controindicazioni.filter((c) => c !== "Nessuna").length > 0;
 
@@ -182,6 +185,37 @@ export default function SchedaView({ trial }: { trial: boolean }) {
           </div>
         )}
 
+        {routine.length > 0 && (
+          <section className="mb-8 rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+            <h3 className="text-sm font-semibold text-stone-900 dark:text-stone-100">
+              Routine consigliata
+            </h3>
+            <p className="mt-0.5 text-xs text-stone-500">
+              Sequenza suggerita: riscaldamento, lavoro principale, defaticamento.
+            </p>
+            <ol className="mt-4 flex flex-col gap-4">
+              {routine.map(({ phase, exercises }, i) => (
+                <li key={phase}>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">
+                    {i + 1}. {phaseLabel[phase]}
+                  </p>
+                  <ul className="mt-1.5 flex flex-col gap-1">
+                    {exercises.map((ex) => (
+                      <li
+                        key={ex.id}
+                        className="flex items-center justify-between gap-3 text-sm text-stone-700 dark:text-stone-300"
+                      >
+                        <span>{ex.name}</span>
+                        <span className="shrink-0 text-xs text-stone-400">{ex.sets}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
         <div className="flex flex-col gap-8">
           {sections.map(({ group, exercises }) => (
             <section key={group.id}>
@@ -229,9 +263,14 @@ export default function SchedaView({ trial }: { trial: boolean }) {
           ))}
         </div>
 
-        <p className="mt-10 text-center text-[11px] text-stone-400">
-          Contenuto a scopo indicativo, validato dal professionista prima della consegna al paziente.
-        </p>
+        <div className="mt-10 rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-900">
+          <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400">
+            Avvertenza e limitazione di responsabilità
+          </p>
+          <p className="mt-1 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+            {LIABILITY_DISCLAIMER}
+          </p>
+        </div>
       </main>
     </div>
   );

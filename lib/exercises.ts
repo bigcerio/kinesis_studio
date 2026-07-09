@@ -1,3 +1,18 @@
+export type Phase = "riscaldamento" | "principale" | "defaticamento";
+
+export const phaseLabel: Record<Phase, string> = {
+  riscaldamento: "Riscaldamento",
+  principale: "Lavoro principale",
+  defaticamento: "Defaticamento",
+};
+
+/** Ogni categoria di esercizio ha un ruolo fisso nella sequenza della routine. */
+export function phaseForCategory(category: Exercise["category"]): Phase {
+  if (category === "mobilita") return "riscaldamento";
+  if (category === "stretching") return "defaticamento";
+  return "principale"; // rinforzo, recupero
+}
+
 export interface Exercise {
   id: string;
   groupId: string; // matches muscleGroups id
@@ -46,7 +61,8 @@ export const exercises: Exercise[] = [
     execution: "Avambraccio a 90° contro lo stipite, ruota il tronco dal lato opposto finché senti tensione non dolorosa. Mantieni la respirazione fluida.",
     sets: "3 x 30\" per lato",
     contraindications: ["Lussazione di spalla recente"],
-    videoSource: "search",
+    videoSource: "youtube",
+    videoId: "Xt5GwFsPPUE",
     videoUrl: itVideoSearch("stretching grande pettorale al muro"),
     videoThumbnail: "",
   },
@@ -85,7 +101,8 @@ export const exercises: Exercise[] = [
     execution: "Supino, ginocchia a 90°, braccia verso il soffitto. Estendi lentamente braccio e gamba opposti mantenendo la zona lombare a contatto col suolo.",
     sets: "3 x 8 ripetizioni per lato",
     contraindications: [],
-    videoSource: "search",
+    videoSource: "youtube",
+    videoId: "5Y4MDZWsBQw",
     videoUrl: itVideoSearch("dead bug esercizio core esecuzione"),
     videoThumbnail: "",
   },
@@ -288,4 +305,29 @@ export const exercises: Exercise[] = [
 
 export function exercisesForGroup(groupId: string): Exercise[] {
   return exercises.filter((e) => e.groupId === groupId);
+}
+
+export interface RoutinePhase {
+  phase: Phase;
+  exercises: Exercise[];
+}
+
+/**
+ * Costruisce la routine ordinata (riscaldamento → lavoro principale →
+ * defaticamento) a partire dai distretti selezionati, senza duplicare
+ * lo stesso esercizio se coinvolge piu' distretti.
+ */
+export function buildRoutine(groupIds: string[]): RoutinePhase[] {
+  const seen = new Set<string>();
+  const matched = groupIds
+    .flatMap((g) => exercisesForGroup(g))
+    .filter((e) => (seen.has(e.id) ? false : (seen.add(e.id), true)));
+
+  const order: Phase[] = ["riscaldamento", "principale", "defaticamento"];
+  return order
+    .map((phase) => ({
+      phase,
+      exercises: matched.filter((e) => phaseForCategory(e.category) === phase),
+    }))
+    .filter((p) => p.exercises.length > 0);
 }

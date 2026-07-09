@@ -106,6 +106,30 @@ export default function Home() {
           </div>
         </section>
 
+        <section
+          className="relative mx-auto mt-4 w-full max-w-5xl overflow-hidden rounded-3xl px-6 opacity-0 sm:mt-8"
+          style={{ animation: "fade-up 0.6s ease-out 0.4s forwards" }}
+        >
+          <div className="relative isolate flex min-h-[280px] items-center overflow-hidden rounded-3xl sm:min-h-[340px]">
+            <Image
+              src="/hero-recovery.webp"
+              alt="Sessione di recupero funzionale e fisioterapia"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="-z-10 object-cover object-center"
+            />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-stone-900/80 via-stone-900/35 to-stone-900/10" />
+            <div className="px-6 py-10 sm:px-10">
+              <p className="max-w-md text-lg font-medium leading-snug text-white sm:text-xl">
+                Recupero funzionale guidato, con lo stesso rigore di uno studio clinico.
+              </p>
+              <p className="mt-2 max-w-sm text-xs text-white/70">
+                Ogni scheda nasce da un'anamnesi vera, non da un algoritmo generico.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="relative mx-auto w-full max-w-3xl px-6 pb-16 sm:pb-20">
           <div
             className="grid grid-cols-1 gap-4 text-left sm:grid-cols-3 [&>*]:opacity-0"
