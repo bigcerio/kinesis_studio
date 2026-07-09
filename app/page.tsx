@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const steps = [
   {
@@ -8,8 +9,8 @@ const steps = [
   },
   {
     n: "02",
-    title: "Mappa corporea 3D",
-    text: "Corpo interattivo, ruotabile, basato sul profilo: esplora e seleziona i distretti muscolari coinvolti.",
+    title: "Mappa corporea",
+    text: "Corpo interattivo, fronte e retro: esplora e seleziona i distretti muscolari coinvolti.",
   },
   {
     n: "03",
@@ -20,55 +21,111 @@ const steps = [
 
 export default function Home() {
   return (
-    <div className="flex min-h-dvh flex-col bg-stone-50 dark:bg-stone-950">
-      <header className="flex items-center justify-between px-6 py-5">
-        <span className="text-sm font-semibold tracking-tight text-stone-900 dark:text-stone-100">
+    <div className="flex min-h-dvh flex-col overflow-x-clip bg-stone-50">
+      <header
+        className="flex items-center justify-between px-6 py-5 opacity-0 [animation-fill-mode:forwards]"
+        style={{ animation: "fade-up 0.5s ease-out 0.05s forwards" }}
+      >
+        <span className="text-sm font-semibold tracking-tight text-stone-900">
           Kinesis Studio
         </span>
         <div className="flex items-center gap-3 text-xs">
-          <Link href="/accedi" className="text-stone-500 hover:text-stone-800">
+          <Link href="/accedi" className="text-stone-500 transition-colors hover:text-stone-800">
             Accedi
           </Link>
           <Link
             href="/registrati"
-            className="rounded-full bg-stone-900 px-3.5 py-1.5 font-medium text-white hover:bg-stone-800"
+            className="rounded-full bg-stone-900 px-3.5 py-1.5 font-medium text-white transition-colors hover:bg-stone-800"
           >
             Registrati
           </Link>
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center">
-        <h1 className="max-w-2xl text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl dark:text-stone-100">
-          Osteopatia funzionale, allenamento e recupero: schede costruite sul tuo corpo.
-        </h1>
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-stone-500 dark:text-stone-400">
-          Nessuna teoria generica. Anamnesi approfondita, selezione anatomica precisa,
-          esercizi con basi scientifiche — stretching, allenamento funzionale, recupero.
-        </p>
-        <Link
-          href="/anamnesi"
-          className="mt-8 rounded-full bg-emerald-600 px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-emerald-700 dark:bg-emerald-500 dark:text-emerald-950 dark:hover:bg-emerald-400"
-        >
-          Inizia la tua valutazione
-        </Link>
+      <main className="flex flex-1 flex-col">
+        <section className="relative mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 items-center gap-10 px-6 py-12 sm:py-16 md:grid-cols-2 md:gap-6">
+          {/* Sfondo decorativo */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute right-[-10%] top-1/2 -z-10 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-emerald-100/70 blur-3xl"
+          />
 
-        <div className="mt-16 grid w-full max-w-3xl grid-cols-1 gap-4 text-left sm:grid-cols-3">
-          {steps.map((s) => (
-            <div
-              key={s.n}
-              className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-950"
+          <div className="text-center md:text-left">
+            <span
+              className="inline-block rounded-full border border-stone-200 bg-white px-3 py-1 text-[11px] font-medium text-stone-500 opacity-0"
+              style={{ animation: "fade-up 0.5s ease-out 0.1s forwards" }}
             >
-              <span className="text-xs font-medium text-stone-400">{s.n}</span>
-              <h2 className="mt-2 text-sm font-semibold text-stone-900 dark:text-stone-100">
-                {s.title}
-              </h2>
-              <p className="mt-1.5 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-                {s.text}
-              </p>
+              Osteopatia funzionale · anti-aging · recupero
+            </span>
+
+            <h1
+              className="mt-4 text-3xl font-semibold tracking-tight text-stone-900 opacity-0 sm:text-4xl"
+              style={{ animation: "fade-up 0.6s ease-out 0.18s forwards" }}
+            >
+              Schede di allenamento e recupero costruite sul tuo corpo.
+            </h1>
+
+            <p
+              className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-stone-500 opacity-0 md:mx-0"
+              style={{ animation: "fade-up 0.6s ease-out 0.28s forwards" }}
+            >
+              Nessuna teoria generica. Anamnesi approfondita, selezione anatomica precisa,
+              esercizi con basi scientifiche — stretching, allenamento funzionale, recupero.
+            </p>
+
+            <div
+              className="mt-8 opacity-0"
+              style={{ animation: "fade-up 0.6s ease-out 0.38s forwards" }}
+            >
+              <Link
+                href="/anamnesi"
+                className="inline-block rounded-full bg-emerald-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md"
+              >
+                Inizia la tua valutazione
+              </Link>
             </div>
-          ))}
-        </div>
+          </div>
+
+          <div
+            className="relative mx-auto h-[320px] w-[230px] opacity-0 sm:h-[400px] sm:w-[290px]"
+            style={{ animation: "fade-in 0.8s ease-out 0.3s forwards" }}
+          >
+            <div
+              className="relative h-full w-full"
+              style={{ animation: "float-slow 6s ease-in-out infinite" }}
+            >
+              <Image
+                src="/body/front.webp"
+                alt="Corpo umano, mappa muscolare anteriore"
+                fill
+                priority
+                sizes="(max-width: 640px) 230px, 290px"
+                className="object-contain drop-shadow-xl"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="relative mx-auto w-full max-w-3xl px-6 pb-16 sm:pb-20">
+          <div
+            className="grid grid-cols-1 gap-4 text-left sm:grid-cols-3 [&>*]:opacity-0"
+            style={{ animationFillMode: "forwards" }}
+          >
+            {steps.map((s, i) => (
+              <div
+                key={s.n}
+                className="group rounded-2xl border border-stone-200 bg-white p-5 opacity-0 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg"
+                style={{ animation: `fade-up 0.5s ease-out ${0.45 + i * 0.1}s forwards` }}
+              >
+                <span className="text-xs font-medium text-emerald-600 transition-colors">
+                  {s.n}
+                </span>
+                <h2 className="mt-2 text-sm font-semibold text-stone-900">{s.title}</h2>
+                <p className="mt-1.5 text-xs leading-relaxed text-stone-500">{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer className="px-6 py-5 text-center text-[11px] text-stone-400">
