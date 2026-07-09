@@ -22,6 +22,65 @@ const categoryColor: Record<Exercise["category"], string> = {
   recupero: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
 };
 
+function ExerciseVideo({ exercise }: { exercise: Exercise }) {
+  const [playing, setPlaying] = useState(false);
+
+  if (exercise.videoSource === "custom" && exercise.videoId) {
+    return (
+      <video
+        src={exercise.videoId}
+        controls
+        className="aspect-video w-full bg-black print:hidden"
+      />
+    );
+  }
+
+  if (exercise.videoSource === "youtube" && exercise.videoId) {
+    if (playing) {
+      return (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${exercise.videoId}?autoplay=1`}
+          title={exercise.name}
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="aspect-video w-full print:hidden"
+        />
+      );
+    }
+    return (
+      <button
+        onClick={() => setPlaying(true)}
+        className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-stone-900 print:hidden"
+      >
+        <img
+          src={`https://i.ytimg.com/vi/${exercise.videoId}/hqdefault.jpg`}
+          alt={exercise.name}
+          className="absolute inset-0 h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-100"
+        />
+        <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white/90 shadow">
+          ▶
+        </span>
+      </button>
+    );
+  }
+
+  return (
+    <a
+      href={exercise.videoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex aspect-video items-center justify-center bg-stone-100 print:hidden dark:bg-stone-800"
+    >
+      <span className="flex items-center gap-2 text-xs font-medium text-stone-500 transition-colors group-hover:text-stone-800 dark:group-hover:text-stone-200">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow dark:bg-stone-950">
+          ▶
+        </span>
+        Cerca l&apos;esecuzione
+      </span>
+    </a>
+  );
+}
+
 export default function SchedaPage() {
   const [groupIds, setGroupIds] = useState<string[]>([]);
   const [anamnesi, setAnamnesi] = useState<AnamnesiData | null>(null);
@@ -119,19 +178,7 @@ export default function SchedaPage() {
                       key={ex.id}
                       className="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900"
                     >
-                      <a
-                        href={ex.videoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex aspect-video items-center justify-center bg-stone-100 print:hidden dark:bg-stone-800"
-                      >
-                        <span className="flex items-center gap-2 text-xs font-medium text-stone-500 transition-colors group-hover:text-stone-800 dark:group-hover:text-stone-200">
-                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow dark:bg-stone-950">
-                            ▶
-                          </span>
-                          Guarda l&apos;esecuzione
-                        </span>
-                      </a>
+                      <ExerciseVideo exercise={ex} />
                       <div className="flex flex-1 flex-col gap-1.5 p-3.5">
                         <div className="flex items-center justify-between gap-2">
                           <p className="text-sm font-medium text-stone-900 dark:text-stone-100">{ex.name}</p>
